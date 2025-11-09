@@ -6,4 +6,5 @@ transformers==4.45.2
 torch==2.5.1
 numpy==1.26.4
 python-multipart==0.0.12
-google-generativeai==0.3.2
+google-genai==0.3.2
+python-dotenv==1.0.1

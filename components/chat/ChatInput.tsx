@@ -35,7 +35,10 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Tanyakan tentang menu McDonald's favoritmu..."
             disabled={isLoading}
-            className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base placeholder:text-gray-400 font-medium"
+            className={`flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base font-medium
+              text-black dark:text-white
+              placeholder:text-gray-400 focus:placeholder-transparent ${input ? 'placeholder-transparent' : ''}
+              caret-[#DA291C]`}
           />
           <Button
             type="submit"
