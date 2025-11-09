@@ -135,19 +135,8 @@ npm run dev
 - Menghasilkan embeddings 768-dimensi
 
 ### LLM Model
-**Wikidepia/IndoT5-base**
-- Model T5 yang di-fine-tune untuk bahasa Indonesia
-- Seq2Seq model untuk generate response
-- Parameter: ~220M
+**Gemini**
 
-### Model Alternatif untuk Bahasa Indonesia
-
-Anda bisa mengganti model di `backend/main.py`:
-
-1. **IndoGPT** - `indonesian-nlp/gpt2-small-indonesian-522M`
-2. **IndoBART** - `indobenchmark/indobart-v2`
-3. **mBART-50** - `facebook/mbart-large-50`
-4. **IndoNLG** - `Wikidepia/IndoNLG-base`
 
 ## 📊 Data Nutrisi
 
