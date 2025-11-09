@@ -1,0 +1,749 @@
+[
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Chicken Muffin",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chicken-muffin",
+        "Garam":552.87,
+        "Gula":2.34,
+        "Kalori":304.42,
+        "Lemak":13.75
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Sausage McMuffin",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/sausage-mcmuffin",
+        "Garam":779.18,
+        "Gula":2.17,
+        "Kalori":319.08,
+        "Lemak":14.75
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Chicken Muffin with Egg",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chicken-muffin-with-egg",
+        "Garam":629.5,
+        "Gula":2.34,
+        "Kalori":379.78,
+        "Lemak":18.6
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Sausage McMuffin with Egg",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/sausage-mcmuffin-with-egg",
+        "Garam":855.81,
+        "Gula":2.17,
+        "Kalori":394.44,
+        "Lemak":19.6
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Sausage Wrap",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/sausage-wrap",
+        "Garam":737.9,
+        "Gula":1.54,
+        "Kalori":294.3,
+        "Lemak":14.66
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Big Breakfast",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/big-breakfast",
+        "Garam":975.4,
+        "Gula":10.44,
+        "Kalori":575.44,
+        "Lemak":26.33
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Breakfast Wrap",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/breakfast-wrap",
+        "Garam":525.31,
+        "Gula":1.75,
+        "Kalori":211.29,
+        "Lemak":8.57
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Hotcakes 3 pcs",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/hotcakes-3-pcs",
+        "Garam":669.18,
+        "Gula":21.85,
+        "Kalori":486.08,
+        "Lemak":8.41
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Hotcakes 2 pcs",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/hotcakes-2-pcs",
+        "Garam":449.76,
+        "Gula":19.87,
+        "Kalori":368.72,
+        "Lemak":7.61
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Hashbrown",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/hashbrown",
+        "Garam":247.93,
+        "Gula":0.0,
+        "Kalori":135.51,
+        "Lemak":7.41
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Nasi Uduk McD",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/nasi-uduk-mcd",
+        "Garam":1144.59,
+        "Gula":4.8,
+        "Kalori":367.33,
+        "Lemak":9.61
+    },
+    {
+        "kategori":"Breakfast",
+        "nama_menu":"Bubur Ayam McD",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/bubur-ayam-mcd",
+        "Garam":1552.57,
+        "Gula":0.57,
+        "Kalori":191.19,
+        "Lemak":5.14
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Paket HeBat - Chicken Burger Deluxe",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/paket-hebat-chicken-burger-deluxe",
+        "Garam":836.19,
+        "Gula":31.16,
+        "Kalori":674.33,
+        "Lemak":24.16
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Paket HeBat - Korean Soy Garlic Wings",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/paket-hebat-korean-soy-garlic-wings",
+        "Garam":779.26,
+        "Gula":22.0,
+        "Kalori":603.61,
+        "Lemak":17.86
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Korean Soy Garlic Wings - A la Carte 6pcs",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/korean-soy-garlic-wings-a-la-carte-6pcs",
+        "Garam":1992.72,
+        "Gula":0.0,
+        "Kalori":674.03,
+        "Lemak":40.48
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaNas Wings Korean Soy Garlic",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/panas-wings-korean-soy-garlic",
+        "Garam":1393.71,
+        "Gula":30.8,
+        "Kalori":807.78,
+        "Lemak":27.34
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Ayam Krispy McDonald's",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/ayam-krispy-mcdonalds",
+        "Garam":366.61,
+        "Gula":0.26,
+        "Kalori":189.32,
+        "Lemak":10.38
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Ayam Spicy McDonald's",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/ayam-spicy-mcdonalds",
+        "Garam":611.95,
+        "Gula":0.0,
+        "Kalori":166.19,
+        "Lemak":7.45
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaNas 1",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/panas-1",
+        "Garam":691.95,
+        "Gula":31.25,
+        "Kalori":682.07,
+        "Lemak":18.09
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaNas 2 with Fries",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/panas-2-with-fries",
+        "Garam":1387.09,
+        "Gula":32.12,
+        "Kalori":994.6,
+        "Lemak":43.1
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaNas 2 with Rice",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/panas-2-with-rice",
+        "Garam":1058.56,
+        "Gula":31.51,
+        "Kalori":871.39,
+        "Lemak":28.47
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaNas Spesial",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/panas-spesial",
+        "Garam":823.51,
+        "Gula":31.25,
+        "Kalori":811.09,
+        "Lemak":26.13
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaMer 5",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/pamer-5",
+        "Garam":3005.18,
+        "Gula":94.41,
+        "Kalori":2526.14,
+        "Lemak":80.58
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"PaMer 7",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/pamer-7",
+        "Garam":4128.97,
+        "Gula":156.72,
+        "Kalori":3755.96,
+        "Lemak":109.41
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Chicken Burger Deluxe",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chicken-burger-deluxe",
+        "Garam":540.08,
+        "Gula":4.15,
+        "Kalori":295.67,
+        "Lemak":11.7
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Chicken Burger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chicken-burger",
+        "Garam":533.52,
+        "Gula":4.02,
+        "Kalori":292.74,
+        "Lemak":11.7
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"McSpicy\u2122",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mcspicy",
+        "Garam":1045.81,
+        "Gula":4.62,
+        "Kalori":509.65,
+        "Lemak":26.84
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"McChicken",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mcchicken",
+        "Garam":827.3,
+        "Gula":4.62,
+        "Kalori":400.88,
+        "Lemak":18.45
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"McNuggets\u00ae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mcnuggets",
+        "Garam":716.98,
+        "Gula":9.46,
+        "Kalori":332.89,
+        "Lemak":16.58
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Chicken Snack Wrap",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chicken-snack-wrap",
+        "Garam":550.04,
+        "Gula":1.65,
+        "Kalori":245.94,
+        "Lemak":12.0
+    },
+    {
+        "kategori":"Ayam",
+        "nama_menu":"Spicy Chicken Bites",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/spicy-chicken-bites",
+        "Garam":387.12,
+        "Gula":0.0,
+        "Kalori":173.84,
+        "Lemak":8.36
+    },
+    {
+        "kategori":"Ikan",
+        "nama_menu":"Fish Fillet Burger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/fish-fillet-burger",
+        "Garam":450.0,
+        "Gula":4.85,
+        "Kalori":374.22,
+        "Lemak":12.43
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Big Mac\u00ae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/big-mac",
+        "Garam":876.79,
+        "Gula":8.3,
+        "Kalori":528.8,
+        "Lemak":25.38
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Double Big Mac",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/double-big-mac",
+        "Garam":1061.35,
+        "Gula":9.6,
+        "Kalori":737.23,
+        "Lemak":39.15
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Double Cheeseburger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/double-cheeseburger",
+        "Garam":984.37,
+        "Gula":6.51,
+        "Kalori":454.75,
+        "Lemak":23.44
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Triple Cheeseburger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/triple-cheeseburger",
+        "Garam":1075.19,
+        "Gula":6.51,
+        "Kalori":546.21,
+        "Lemak":30.31
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Cheeseburger Deluxe",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/cheeseburger-deluxe",
+        "Garam":673.35,
+        "Gula":6.49,
+        "Kalori":318.12,
+        "Lemak":12.72
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Cheeseburger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/cheeseburger",
+        "Garam":664.46,
+        "Gula":6.35,
+        "Kalori":313.9,
+        "Lemak":12.72
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Beef Burger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/beef-burger",
+        "Garam":476.13,
+        "Gula":6.28,
+        "Kalori":265.07,
+        "Lemak":8.86
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Beef Burger Deluxe",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/beef-burger-deluxe",
+        "Garam":485.02,
+        "Gula":6.41,
+        "Kalori":269.3,
+        "Lemak":8.86
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Double Big Mac McFlavor Set",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/double-big-mac-mcflavor-set",
+        "Garam":2110.35,
+        "Gula":15.54,
+        "Kalori":1169.6,
+        "Lemak":58.63
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Paket HeBat - Beef Burger Deluxe",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/paket-hebat-beef-burger-deluxe",
+        "Garam":781.12,
+        "Gula":33.42,
+        "Kalori":647.96,
+        "Lemak":21.32
+    },
+    {
+        "kategori":"Burger",
+        "nama_menu":"Paket HeBat McSpaghetti",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/paket-hebat-mcspaghetti",
+        "Garam":779.2,
+        "Gula":31.5,
+        "Kalori":508.7,
+        "Lemak":4.5
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Fruit Tea Lemon",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/fruit-tea-lemon",
+        "Garam":56.0,
+        "Gula":30.8,
+        "Kalori":154.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Coca-Cola",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/coca-cola",
+        "Garam":21.0,
+        "Gula":37.1,
+        "Kalori":148.4,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Coca-Cola Zero Sugar",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/coca-cola-zero-sugar",
+        "Garam":28.0,
+        "Gula":0.0,
+        "Kalori":0.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Sprite",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/sprite",
+        "Garam":56.0,
+        "Gula":16.1,
+        "Kalori":64.4,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Fanta",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/fanta",
+        "Garam":35.0,
+        "Gula":16.1,
+        "Kalori":64.4,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Coca-Cola McFloat",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/coca-cola-mcfloat",
+        "Garam":39.98,
+        "Gula":40.11,
+        "Kalori":178.24,
+        "Lemak":1.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Fanta McFloat",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/fanta-mcfloat",
+        "Garam":53.98,
+        "Gula":19.11,
+        "Kalori":94.24,
+        "Lemak":1.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Tehbotol Sosro Tawar",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/tehbotol-sosro-tawar",
+        "Garam":38.89,
+        "Gula":0.0,
+        "Kalori":0.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Iced Milo",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/iced-milo",
+        "Garam":95.0,
+        "Gula":17.0,
+        "Kalori":125.0,
+        "Lemak":2.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Iced Lychee Tea",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/iced-lychee-tea",
+        "Garam":45.0,
+        "Gula":42.8,
+        "Kalori":204.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Es Kopi Gula Aren",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/es-kopi-gula-aren",
+        "Garam":114.9,
+        "Gula":31.29,
+        "Kalori":230.97,
+        "Lemak":5.2
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Es Kopi Gula Aren Jelly",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/es-kopi-gula-aren-jelly",
+        "Garam":297.06,
+        "Gula":38.14,
+        "Kalori":351.88,
+        "Lemak":5.24
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Es Kopi Gula Aren Float",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/es-kopi-gula-aren-float",
+        "Garam":133.88,
+        "Gula":34.29,
+        "Kalori":260.02,
+        "Lemak":6.2
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Es Kopi Gula Aren Jelly Float",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/es-kopi-gula-aren-jelly-float",
+        "Garam":316.04,
+        "Gula":41.15,
+        "Kalori":380.93,
+        "Lemak":6.24
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Iced Coffee Jelly Float",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/iced-coffee-jelly-float",
+        "Garam":340.1,
+        "Gula":39.48,
+        "Kalori":248.11,
+        "Lemak":2.24
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Iced Coffee Float",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/iced-coffee-float",
+        "Garam":53.98,
+        "Gula":19.11,
+        "Kalori":198.15,
+        "Lemak":1.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Iced Coffee Jelly",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/iced-coffee-jelly",
+        "Garam":321.12,
+        "Gula":36.47,
+        "Kalori":288.96,
+        "Lemak":1.24
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Iced Coffee",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/iced-coffee",
+        "Garam":138.96,
+        "Gula":29.62,
+        "Kalori":168.05,
+        "Lemak":1.2
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Tehbotol Sosro",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/tehbotol-sosro",
+        "Garam":25.0,
+        "Gula":16.0,
+        "Kalori":70.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Tehbotol Sosro Kotak",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/tehbotol-sosro-kotak",
+        "Garam":31.25,
+        "Gula":18.75,
+        "Kalori":75.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Fruit Tea Blackcurrant",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/fruit-tea-blackcurrant",
+        "Garam":62.5,
+        "Gula":22.5,
+        "Kalori":100.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Mineral Water Prim-a",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mineral-water-prim-a",
+        "Garam":0.0,
+        "Gula":0.0,
+        "Kalori":0.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Hot Coffee",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/hot-coffee",
+        "Garam":0.0,
+        "Gula":0.0,
+        "Kalori":6.25,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Drinks",
+        "nama_menu":"Hot Tea",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/hot-tea",
+        "Garam":0.0,
+        "Gula":0.0,
+        "Kalori":0.0,
+        "Lemak":0.0
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Chocolate Strawberry Sundae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chocolate-strawberry-sundae",
+        "Garam":32.56,
+        "Gula":20.25,
+        "Kalori":141.5,
+        "Lemak":2.38
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Double Choco Sundae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/double-choco-sundae",
+        "Garam":92.69,
+        "Gula":20.95,
+        "Kalori":191.29,
+        "Lemak":6.16
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Ice Cream Cone Cokelat Twist",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/ice-cream-cone-cokelat-twist",
+        "Garam":22.73,
+        "Gula":3.97,
+        "Kalori":59.89,
+        "Lemak":1.26
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Ice Cream Cone Cokelat",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/ice-cream-cone-cokelat",
+        "Garam":28.02,
+        "Gula":6.34,
+        "Kalori":85.75,
+        "Lemak":1.93
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Double Choco Pie",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/double-choco-pie-1",
+        "Garam":98.5,
+        "Gula":8.2,
+        "Kalori":205.0,
+        "Lemak":13.35
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Apple Pie",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/apple-pie",
+        "Garam":70.5,
+        "Gula":6.8,
+        "Kalori":143.0,
+        "Lemak":7.9
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"McFlurry feat. OREO",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mcflurry-feat-oreo",
+        "Garam":126.28,
+        "Gula":12.19,
+        "Kalori":144.6,
+        "Lemak":4.9
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"McFlurry Choco",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mcflurry-choco",
+        "Garam":69.37,
+        "Gula":15.72,
+        "Kalori":141.98,
+        "Lemak":3.2
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Strawberry Sundae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/strawberry-sundae",
+        "Garam":63.6,
+        "Gula":21.23,
+        "Kalori":143.36,
+        "Lemak":2.99
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Chocolate Sundae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/chocolate-sundae",
+        "Garam":123.74,
+        "Gula":21.93,
+        "Kalori":193.15,
+        "Lemak":6.76
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Ice Cream Cone",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/ice-cream-cone",
+        "Garam":52.17,
+        "Gula":7.11,
+        "Kalori":87.2,
+        "Lemak":2.41
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Mix Berries With OREO",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mix-berries-with-oreo",
+        "Garam":140.57,
+        "Gula":22.09,
+        "Kalori":211.74,
+        "Lemak":5.49
+    },
+    {
+        "kategori":"Desserts",
+        "nama_menu":"Mix Berries With Froot Loops",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/mix-berries-with-froot-loops",
+        "Garam":80.22,
+        "Gula":19.91,
+        "Kalori":166.29,
+        "Lemak":3.63
+    },
+    {
+        "kategori":"Happy Meal",
+        "nama_menu":"Happy Meal 4 pcs McNuggets\u00ae",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/happy-meal-4-pcs-mcnuggets",
+        "Garam":521.15,
+        "Gula":4.26,
+        "Kalori":399.94,
+        "Lemak":21.33
+    },
+    {
+        "kategori":"Happy Meal",
+        "nama_menu":"Happy Meal Ayam McD",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/happy-meal-ayam-mcd",
+        "Garam":435.84,
+        "Gula":4.26,
+        "Kalori":463.75,
+        "Lemak":14.73
+    },
+    {
+        "kategori":"Happy Meal",
+        "nama_menu":"Happy Meal Beef Burger",
+        "sumber_url":"https:\/\/www.mcdonalds.co.id\/menu\/happy-meal-beef-burger",
+        "Garam":661.13,
+        "Gula":12.78,
+        "Kalori":375.07,
+        "Lemak":13.36
+    }
+]

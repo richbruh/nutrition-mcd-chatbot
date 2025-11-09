@@ -1,36 +1,250 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# McDonald's Nutrition Chatbot
 
-## Getting Started
+Aplikasi chatbot untuk informasi nutrisi menu McDonald's Indonesia menggunakan RAG (Retrieval Augmented Generation) dan model LLM bahasa Indonesia.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend
+- **Next.js 16** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **ShadCN UI** - UI components
+- **Lucide React** - Icons
+
+### Backend
+- **FastAPI** - Python web framework
+- **Sentence Transformers** - Embedding model
+- **Hugging Face Transformers** - LLM (IndoT5-base)
+- **PyTorch** - Deep learning
+- **RAG Architecture** - Retrieval Augmented Generation
+
+## 📁 Struktur Direktori
+
+```
+nutrition-mcd/
+├── app/                          # Next.js app directory
+│   ├── globals.css              # Global styles
+│   ├── layout.tsx               # Root layout
+│   └── page.tsx                 # Home page (Chatbot)
+├── components/
+│   ├── chat/
+│   │   ├── ChatInterface.tsx    # Main chat component
+│   │   ├── ChatMessage.tsx      # Message component
+│   │   └── ChatInput.tsx        # Input component
+│   └── ui/                      # ShadCN UI components
+│       ├── button.tsx
+│       ├── input.tsx
+│       ├── avatar.tsx
+│       └── scroll-area.tsx
+├── lib/
+│   └── utils.ts                 # Utility functions
+├── backend/
+│   ├── main.py                  # FastAPI server
+│   ├── requirements.txt         # Python dependencies
+│   ├── README.md               # Backend documentation
+│   └── knowledge_json/
+│       └── mcd_nutrition_cleaned.json  # Nutrition data
+├── public/                      # Static files
+├── package.json
+├── tsconfig.json
+├── tailwind.config.ts
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Fitur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ✅ Chat interface mirip ChatGPT
+- ✅ RAG untuk retrieval informasi nutrisi akurat
+- ✅ Model LLM bahasa Indonesia (IndoT5-base)
+- ✅ Real-time chat dengan loading states
+- ✅ Responsive design (mobile & desktop)
+- ✅ Dark mode support
+- ✅ Sidebar dengan informasi aplikasi
+- ✅ Semantic search untuk mencari menu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Cara Menjalankan
 
-## Learn More
+### 1. Install Dependencies Frontend
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Install package npm
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Atau dengan yarn
+yarn install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Atau dengan pnpm
+pnpm install
+```
 
-## Deploy on Vercel
+### 2. Setup Backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Masuk ke folder backend
+cd backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Buat virtual environment
+python -m venv venv
+
+# Aktifkan virtual environment
+# Windows (PowerShell):
+.\venv\Scripts\Activate.ps1
+
+# Install dependencies Python
+pip install -r requirements.txt
+```
+
+### 3. Jalankan Backend Server
+
+```bash
+# Dari folder backend
+python main.py
+
+# Backend akan berjalan di http://localhost:8000
+```
+
+### 4. Jalankan Frontend
+
+```bash
+# Kembali ke root folder
+cd ..
+
+# Jalankan Next.js development server
+npm run dev
+
+# Frontend akan berjalan di http://localhost:3000
+```
+
+## 💬 Cara Menggunakan
+
+1. Buka browser dan akses `http://localhost:3000`
+2. Ketik pertanyaan tentang nutrisi menu McDonald's
+3. Contoh pertanyaan:
+   - "Berapa kalori Big Mac?"
+   - "Menu sarapan apa yang rendah kalori?"
+   - "Kandungan gula McFlurry berapa?"
+   - "Rekomendasi menu dengan lemak rendah"
+   - "Bandingkan kalori Chicken McNuggets dan McSpicy"
+
+## 🤖 Model AI yang Digunakan
+
+### Embedding Model
+**sentence-transformers/paraphrase-multilingual-mpnet-base-v2**
+- Untuk semantic search dan retrieval
+- Mendukung bahasa Indonesia
+- Menghasilkan embeddings 768-dimensi
+
+### LLM Model
+**Wikidepia/IndoT5-base**
+- Model T5 yang di-fine-tune untuk bahasa Indonesia
+- Seq2Seq model untuk generate response
+- Parameter: ~220M
+
+### Model Alternatif untuk Bahasa Indonesia
+
+Anda bisa mengganti model di `backend/main.py`:
+
+1. **IndoGPT** - `indonesian-nlp/gpt2-small-indonesian-522M`
+2. **IndoBART** - `indobenchmark/indobart-v2`
+3. **mBART-50** - `facebook/mbart-large-50`
+4. **IndoNLG** - `Wikidepia/IndoNLG-base`
+
+## 📊 Data Nutrisi
+
+Data nutrisi diambil dari menu McDonald's Indonesia dengan informasi:
+- ✅ Nama menu
+- ✅ Kategori (Breakfast, Ayam, Burger, Drinks, Desserts, dll)
+- ✅ Kalori (kkal)
+- ✅ Gula (gram)
+- ✅ Garam (mg)
+- ✅ Lemak (gram)
+- ✅ URL sumber
+
+## 🎨 UI Design
+
+Interface menggunakan design system ChatGPT dengan:
+- Clean & modern layout
+- Sidebar untuk navigasi
+- Avatar untuk user dan bot
+- Smooth scrolling
+- Loading animations
+- Responsive design
+
+## 🔧 Konfigurasi
+
+### Frontend Environment (Opsional)
+Buat file `.env.local`:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+### Backend Configuration
+Backend sudah dikonfigurasi untuk:
+- CORS: Allow dari `http://localhost:3000`
+- Port: 8000
+- Host: 0.0.0.0 (accessible dari network)
+
+## 📝 API Endpoints
+
+### Chat
+```http
+POST http://localhost:8000/api/chat
+Content-Type: application/json
+
+{
+  "message": "Berapa kalori Big Mac?"
+}
+```
+
+### Get All Menu
+```http
+GET http://localhost:8000/api/menu
+```
+
+### Get Menu by Category
+```http
+GET http://localhost:8000/api/menu/category/Breakfast
+```
+
+## 🚀 Deployment
+
+### Frontend (Vercel)
+```bash
+npm run build
+vercel deploy
+```
+
+### Backend (Railway/Render)
+```bash
+# Pastikan requirements.txt sudah lengkap
+# Deploy menggunakan platform pilihan
+```
+
+## 📦 Dependencies
+
+### Frontend
+- Next.js 16
+- React 19
+- Tailwind CSS 4
+- Radix UI components
+- Lucide icons
+
+### Backend
+- FastAPI 0.115.0
+- Transformers 4.45.2
+- Sentence Transformers 3.1.1
+- PyTorch 2.5.1
+- Uvicorn 0.32.0
+
+## 🤝 Contributing
+
+Feel free to contribute! Pull requests are welcome.
+
+## 📄 License
+
+MIT License
+
+---
+
+**Happy Coding! 🚀**
+
