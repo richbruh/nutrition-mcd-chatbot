@@ -79,8 +79,51 @@ else:
 
 print(f"✅ Ready with {len(menu_embeddings)} embeddings\n")
 
+# ==================== CONVERSATION PERSISTENCE ====================
+CONVERSATION_FILE = os.path.join(os.path.dirname(__file__), "conversation_cache.json")
+
+def load_conversation_history():
+    """Load conversation history dari file"""
+    global conversation_history
+    if os.path.exists(CONVERSATION_FILE):
+        try:
+            with open(CONVERSATION_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                # Convert timestamp strings back to datetime
+                for session_id, history in data.items():
+                    for item in history:
+                        item['timestamp'] = datetime.fromisoformat(item['timestamp'])
+                conversation_history = data
+                print(f"✅ Loaded {len(conversation_history)} conversation sessions")
+        except Exception as e:
+            print(f"⚠️  Error loading conversation history: {e}")
+            conversation_history = {}
+    else:
+        conversation_history = {}
+
+def save_conversation_history():
+    """Save conversation history ke file"""
+    try:
+        # Convert datetime to ISO string for JSON serialization
+        data = {}
+        for session_id, history in conversation_history.items():
+            data[session_id] = []
+            for item in history:
+                data[session_id].append({
+                    'user': item['user'],
+                    'assistant': item['assistant'],
+                    'timestamp': item['timestamp'].isoformat()
+                })
+        
+        with open(CONVERSATION_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"⚠️  Error saving conversation history: {e}")
+
 # ==================== CONVERSATION MEMORY ====================
 conversation_history: Dict[str, List[dict]] = {}
+
+load_conversation_history()
 
 def cleanup_old_sessions():
     """Remove sessions older than 1 hour"""
@@ -256,92 +299,231 @@ def create_fallback(query: str, items: list) -> str:
     )
 
 def generate_response_gemini(query: str, items: list, conv_context: str = "") -> str:
-    """Generate response dengan Gemini - lebih natural dan conversational"""
+    """Generate response dengan Gemini - Auto-detect user intent & context dari query"""
     if gemini_client is None:
         return create_fallback(query, items)
 
     # Build context dari retrieved items
     context_lines = []
+    total_calories = 0
+    total_lemak = 0
+    total_gula = 0
+    total_garam = 0
+    
     for d in items:
         itm = d["item"]
+        total_calories += itm.get('Kalori', 0)
+        total_lemak += itm.get('Lemak', 0)
+        total_gula += itm.get('Gula', 0)
+        total_garam += itm.get('Garam', 0)
+        
         context_lines.append(
             f"{itm.get('nama_menu','?')} ({itm.get('kategori','?')}): "
             f"Kalori {itm.get('Kalori',0)} kkal, Lemak {itm.get('Lemak',0)} g, "
             f"Gula {itm.get('Gula',0)} g, Garam {itm.get('Garam',0)} mg"
         )
-    context = "\n".join(context_lines)
     
+    context = "\n".join(context_lines)
+    avg_calories = total_calories / len(items) if items else 0
+
+    # Auto-detect user context dari query
+    query_lower = query.lower()
+    
+    # Detect health goals
+    user_context_detected = []
+    
+    if any(word in query_lower for word in ["diet", "turun berat", "kurus", "langsing", "menurunkan"]):
+        user_context_detected.append("🎯 Goal: Weight loss / Diet")
+    elif any(word in query_lower for word in ["bulking", "nambah berat", "gemuk", "massa otot", "gym"]):
+        user_context_detected.append("🎯 Goal: Muscle gain / Bulking")
+    elif any(word in query_lower for word in ["sehat", "menjaga", "maintenance", "balance"]):
+        user_context_detected.append("🎯 Goal: Healthy maintenance")
+    
+    # Detect activity level
+    if any(word in query_lower for word in ["olahraga", "workout", "gym", "lari", "jogging", "fitness"]):
+        user_context_detected.append("💪 Activity: Active/Exercise")
+    elif any(word in query_lower for word in ["kantoran", "duduk", "kerja", "sedentary"]):
+        user_context_detected.append("🪑 Activity: Sedentary/Office work")
+    
+    # Detect health conditions
+    if any(word in query_lower for word in ["diabetes", "diabetik", "gula darah"]):
+        user_context_detected.append("⚠️ Condition: Diabetes concern")
+    elif any(word in query_lower for word in ["darah tinggi", "hipertensi", "tekanan darah"]):
+        user_context_detected.append("⚠️ Condition: Hypertension concern")
+    elif any(word in query_lower for word in ["kolesterol", "lemak darah"]):
+        user_context_detected.append("⚠️ Condition: Cholesterol concern")
+    
+    # Detect meal timing
+    if any(word in query_lower for word in ["pagi", "sarapan", "breakfast"]):
+        user_context_detected.append("🌅 Timing: Breakfast/Morning")
+    elif any(word in query_lower for word in ["siang", "lunch", "makan siang"]):
+        user_context_detected.append("☀️ Timing: Lunch/Afternoon")
+    elif any(word in query_lower for word in ["malam", "dinner", "makan malam"]):
+        user_context_detected.append("🌙 Timing: Dinner/Evening")
+    
+    # Detect preferences
+    if any(word in query_lower for word in ["rendah kalori", "low cal", "sedikit kalori"]):
+        user_context_detected.append("📉 Preference: Low calorie")
+    elif any(word in query_lower for word in ["rendah gula", "no sugar", "tanpa gula"]):
+        user_context_detected.append("🍬 Preference: Low sugar")
+    elif any(word in query_lower for word in ["rendah garam", "low sodium", "sedikit garam"]):
+        user_context_detected.append("🧂 Preference: Low sodium")
+    elif any(word in query_lower for word in ["rendah lemak", "low fat", "sedikit lemak"]):
+        user_context_detected.append("🥑 Preference: Low fat")
+    
+    # Build context summary
+    context_summary = ""
+    if user_context_detected:
+        context_summary = f"\n**Konteks User yang Terdeteksi dari Query:**\n" + "\n".join([f"• {ctx}" for ctx in user_context_detected])
+
     # Random personality untuk variasi
     personalities = [
-        "Kamu lagi ceria hari ini dan suka kasih fun fact nutrisi",
-        "Kamu lagi fokus health-conscious, kasih tips sehat tapi ga menggurui",
+        "Kamu lagi ceria dan suka kasih fun fact nutrisi yang menarik",
+        "Kamu lagi fokus health-conscious tapi tetap realistis dan tidak menggurui",
         "Kamu lagi casual banget, bicara kayak temen yang peduli kesehatan",
-        "Kamu lagi profesional tapi tetap friendly dan approachable"
+        "Kamu lagi profesional tapi tetap friendly dan approachable",
+        "Kamu lagi excited banget kasih tips kesehatan yang actionable"
     ]
     personality = random.choice(personalities)
 
-    # Enhanced prompt dengan persona yang jelas
-    prompt = f"""Kamu adalah Ronald, asisten AI McDonald's Indonesia yang ramah dan helpful.
+    # REFINED PROMPT dengan auto-detection
+    prompt = f"""Kamu adalah **Dr. Ronald**, ahli nutrisi bersertifikat yang bekerja untuk McDonald's Indonesia.
 
-**Karakteristik:**
-- Bicara santai tapi tetap informatif
-- Pakai 1-2 emoji yang relevan (jangan berlebihan)
-- Kasih konteks sehat tanpa terdengar menggurui
-- Kadang kasih fun fact kalau ada
-- Jawab maksimal 3 kalimat singkat
+**Identitas & Expertise:**
+- Sarjana Gizi & Dietetik dengan 10+ tahun pengalaman
+- Spesialis dalam meal planning, portion control, dan lifestyle nutrition
+- Ahli dalam menyeimbangkan fast food dengan pola hidup sehat
+- Berbicara dengan bahasa Indonesia yang ramah, tidak menggurui, dan praktis
 
 **Mood hari ini:** {personality}
 
-**Data menu McDonald's (JANGAN mengarang di luar ini):**
+**Data Menu McDonald's (AKURAT & LENGKAP):**
 {context}
+
+**Ringkasan Nutrisi Total:**
+- Total Kalori: {total_calories:.1f} kkal (Rata-rata: {avg_calories:.1f} kkal/item)
+- Total Lemak: {total_lemak:.1f}g ({(total_lemak/70)*100:.0f}% kebutuhan harian)
+- Total Gula: {total_gula:.1f}g ({(total_gula/50)*100:.0f}% batas WHO)
+- Total Garam: {total_garam:.1f}mg ({(total_garam/2000)*100:.0f}% batas harian)
+
+{context_summary}
 
 {conv_context}
 
-**Pertanyaan customer:** {query}
+**Pertanyaan Customer:** {query}
 
-**Instruksi:**
-1. Jawab pertanyaan dengan JELAS dan LANGSUNG ke poin
-2. Sebutkan angka nutrisi yang SPESIFIK dari data
-3. Akhiri dengan ajakan ringan atau pertanyaan follow-up
-4. Jangan robotik! Bicara seperti manusia yang friendly
+**INSTRUKSI PENTING:**
 
-**Jawaban (langsung tanpa awalan "Jawaban:"):**"""
+1️⃣ **PAHAMI KONTEKS USER:**
+   - Baca konteks yang terdeteksi di atas
+   - Sesuaikan jawaban dengan goal/kondisi/preferensi mereka
+   - Jika user mention aktivitas/kondisi kesehatan, PRIORITASKAN dalam rekomendasi
+   - Jika tidak ada konteks khusus, berikan advice umum yang balanced
+
+2️⃣ **ANALISIS NUTRISI (Sesuai Data yang Ada):**
+   - Breakdown kalori, lemak, gula, dan garam (HANYA DATA INI)
+   - Bandingkan dengan kebutuhan harian standar
+   - Identifikasi kelebihan/kekurangan nutrisi
+   - JANGAN sebutkan Protein/Karbohidrat (tidak ada datanya)
+
+3️⃣ **REKOMENDASI PERSONAL:**
+   - Sesuaikan dengan konteks user yang terdeteksi
+   - Jika user diet: fokus ke kalori & lemak, kasih alternatif lebih ringan
+   - Jika user bulking: fokus ke kalori & energi, suggest pairing protein
+   - Jika user diabetes: fokus ke gula, warning & alternatives
+   - Jika user hipertensi: fokus ke garam, warning & tips reduce sodium
+   - Jika user workout: suggest timing & pairing dengan protein
+   - Jika user kantoran: suggest portion control & balance meal
+
+4️⃣ **MEAL TIMING & PAIRING:**
+   - Sesuaikan dengan waktu makan yang disebutkan user
+   - Sarapan: fokus energi pagi & sustained energy
+   - Siang: main meal, kombinasi seimbang
+   - Malam: warning jika high calorie, suggest lighter options
+   - Suggest kombinasi menu untuk balanced meal
+
+5️⃣ **ACTIONABLE TIPS (3 TIPS SPESIFIK):**
+   - Modifikasi pesanan untuk lebih sehat (no mayo, less sugar, etc)
+   - Aktivitas fisik equivalent (berapa menit jalan/jogging untuk burn kalori)
+   - Meal timing optimal & frekuensi aman per minggu
+   - Pairing dengan makanan lain (sayur/buah/protein)
+
+**KETERBATASAN DATA:**
+- Data HANYA: Kalori, Lemak, Gula, Garam
+- JANGAN sebutkan Protein/Karbohidrat
+- Jika ditanya: "Maaf, data protein/karbo belum tersedia. Tapi berdasarkan kalori & lemak, saya bisa estimasi bahwa..."
+
+**FORMAT JAWABAN:**
+
+**Struktur Ideal (pilih yang relevan):**
+1. **Opening (1-2 kalimat):** Langsung jawab pertanyaan + highlight utama
+2. **Analisis Personal (jika ada konteks):** Sesuaikan dengan goal/kondisi user
+3. **Breakdown Nutrisi:** Quick summary dengan emoji status (🟢🟡🔴)
+4. **Rekomendasi Praktis:** 2-3 bullet points actionable
+5. **Tips Modifikasi (jika perlu):** Cara bikin lebih sehat
+6. **Exercise Equivalent (jika high cal):** Berapa menit aktivitas untuk burn
+7. **Closing:** Pertanyaan follow-up untuk engagement
+
+**Style Guidelines:**
+- Mulai dengan emoji yang relevan (🍔🥗💪🏃‍♂️)
+- Gunakan **bold** untuk highlight penting
+- Bullet points untuk readability
+- Status emoji: 🟢 Rendah/Baik, 🟡 Sedang/Perhatian, 🔴 Tinggi/Warning
+- Maksimal 5 paragraf singkat (kecuali user minta detail lengkap)
+- Tone friendly, bukan menggurui
+- Fokus pada "bagaimana tetap sehat sambil enjoy McDonald's"
+
+**Contoh Opening yang Baik:**
+✅ "Big Mac (528 kkal) cocok buat kamu yang aktif, tapi garamnya 877mg—hampir setengah batas harian! 💧"
+✅ "Untuk diet, McChicken (400 kkal) lebih aman dari Big Mac. Lemaknya juga 30% lebih rendah 🎯"
+✅ "Menu ini oke buat sarapan energi tinggi, tapi imbangi dengan sayur di siang/malam ya! 🌅"
+
+**Contoh Opening yang Buruk:**
+❌ "Berdasarkan data yang tersedia..."
+❌ "Menu ini mengandung..."
+❌ "Saya akan menjelaskan..."
+
+**PENTING:**
+- Jika user tanya hal di luar nutrisi/menu, arahkan kembali ke topik
+- Jika data tidak lengkap, akui dengan jujur
+- Disclaimer: Ini bukan pengganti konsultasi medis profesional
+
+**Mulai jawaban sekarang (langsung, tanpa prefix "Jawaban:" atau "Dr. Ronald:"):**"""
 
     try:
         resp = gemini_client.models.generate_content(
             model="gemini-2.0-flash-exp",
             contents=prompt,
             config={
-                "temperature": 0.85,      # Lebih kreatif
-                "top_p": 0.90,            # Lebih beragam
-                "top_k": 50,              # Lebih eksplorasi
-                "max_output_tokens": 300, # Lebih panjang
+                "temperature": 0.78,
+                "top_p": 0.88,
+                "top_k": 45,
+                "max_output_tokens": 450,
+                "stop_sequences": ["\n\n\n\n"],
             },
         )
         
         text = (getattr(resp, "text", "") or "").strip()
         
-        # Clean up common artifacts
-        if text.lower().startswith("jawaban:"):
-            text = text[8:].strip()
-        if text.lower().startswith("jawab:"):
-            text = text[6:].strip()
+        # Clean up
+        text = text.replace("Jawaban:", "").replace("Dr. Ronald:", "").replace("**Jawaban:**", "").strip()
         
-        # Fallback jika response terlalu pendek atau gagal
-        if len(text) < 15:
+        if len(text) < 30:
             return create_fallback(query, items)
         
-        # Tambahkan detail & tips hanya jika user minta detail
+        # Enhanced formatting
         query_lower = query.lower()
         wants_details = any(keyword in query_lower for keyword in [
-            "detail", "lengkap", "banding", "vs", "perbandingan", 
-            "semua", "info", "kandungan", "nutrisi"
+            "detail", "lengkap", "analisis", "breakdown", "kandungan", 
+            "porsi", "sehat", "diet", "olahraga", "rekomendasi", "bandingkan",
+            "vs", "perbandingan", "semua", "info lengkap", "compare"
         ])
         
         if wants_details:
-            text += format_items_friendly(items) + health_tips_friendly(items)
+            text += format_nutrition_analysis(items)
+            text += format_portion_guide(items)
+            text += health_tips_advanced(items)
         else:
-            # Tambah tips ringan saja
             text += health_tips_friendly(items)
         
         return text
@@ -356,13 +538,11 @@ def generate_response_gemini(query: str, items: list, conv_context: str = "") ->
 async def chat(req: ChatRequest):
     """Main chat endpoint dengan conversation memory"""
     
-    # Cleanup old sessions periodically
     cleanup_old_sessions()
     
     q = req.message.strip()
     session_id = req.session_id or "default"
     
-    # Validasi input
     if len(q) < 2:
         return ChatResponse(
             response="🤔 Pertanyaan terlalu pendek nih. Coba jelaskan lebih detail ya!",
@@ -370,7 +550,6 @@ async def chat(req: ChatRequest):
             session_id=session_id
         )
     
-    # Retrieve relevant items
     items = retrieve_relevant_items(q, top_k=3, threshold=0.25)
     
     if not items:
@@ -390,10 +569,7 @@ async def chat(req: ChatRequest):
             session_id=session_id
         )
     
-    # Get conversation context
     conv_context = get_conversation_context(session_id, max_history=3)
-    
-    # Generate response
     answer = generate_response_gemini(q, items, conv_context)
     
     # Save to history
@@ -406,16 +582,17 @@ async def chat(req: ChatRequest):
         "timestamp": datetime.now()
     })
     
-    # Keep only last 10 exchanges
     if len(conversation_history[session_id]) > 10:
         conversation_history[session_id] = conversation_history[session_id][-10:]
+    
+    # ✅ AUTO-SAVE setelah setiap conversation
+    save_conversation_history()
     
     return ChatResponse(
         response=answer,
         relevant_items=[i["item"] for i in items],
         session_id=session_id
     )
-
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint"""

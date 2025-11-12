@@ -3,10 +3,41 @@
 Backend API untuk chatbot nutrisi McDonald's menggunakan FastAPI dengan RAG (Retrieval Augmented Generation).
 
 ## Tech Stack
-
+┌─────────────────────────────────────────────────────────┐
+│                  USER INPUT (Query)                      │
+│           "Berapa kalori Big Mac?"                       │
+└─────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│         MODEL 1: EMBEDDING MODEL (Retrieval)             │
+│   sentence-transformers/paraphrase-multilingual-mpnet    │
+│                                                          │
+│   Input: Text query                                      │
+│   Output: Vector 768 dimensi                            │
+│   Function: Semantic search untuk cari menu relevan     │
+└─────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│              VECTOR DATABASE (In-Memory)                 │
+│   77 menu items × 768 dimensions = Embedding Matrix     │
+│   Cosine Similarity Search → Top 3 relevant items       │
+└─────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│       MODEL 2: LLM (Text Generation)                     │
+│            Google Gemini 2.0 Flash Exp                   │
+│                                                          │
+│   Input: Prompt + Context (retrieved data)              │
+│   Output: Natural language response                     │
+│   Function: Generate human-like answer                  │
+└─────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│                  FINAL RESPONSE                          │
+│   "Big Mac punya 528.8 kkal dengan lemak 25.38g..."    │
+└─────────────────────────────────────────────────────────┘
 - **FastAPI**: Web framework untuk API
 - **Sentence Transformers**: Untuk embedding dan retrieval
-- **Hugging Face Transformers**: Model LLM bahasa Indonesia (IndoT5-base)
 - **PyTorch**: Deep learning framework
 
 ## Model yang Digunakan
@@ -102,3 +133,75 @@ Jika ingin mencoba model lain:
 4. **IndoNLG** - `Wikidepia/IndoNLG-base`
 
 Ganti `model_name` di `main.py` untuk mencoba model berbeda.
+
+
+# System Architecture
+
+┌─────────────────────────────────────────────────────────────┐
+│                  USER INPUT (Query)                          │
+│              "Berapa kalori Big Mac?"                        │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 1: EMBEDDING MODEL (Semantic Search)            │
+│   sentence-transformers/paraphrase-multilingual-mpnet-v2     │
+│                                                              │
+│   Input:  Text query                                         │
+│   Output: 768-dimensional vector                            │
+│   Function: Convert text to semantic embeddings             │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│              STEP 2: VECTOR SEARCH (Retrieval)               │
+│   In-Memory Vector Database                                  │
+│   77 menu items × 768 dimensions = Embedding Matrix         │
+│                                                              │
+│   • Cosine Similarity Calculation                           │
+│   • Name Boosting (25% if menu name in query)              │
+│   • Threshold Filtering (similarity > 0.25)                │
+│   • Top-3 Most Relevant Items Retrieved                     │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 3: CONVERSATION MEMORY (Context)                │
+│   Session-Based History Storage                              │
+│                                                              │
+│   • Last 3 conversations loaded                             │
+│   • Automatic session cleanup (> 1 hour)                    │
+│   • User + Assistant messages tracked                       │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 4: RESPONSE GENERATION (Gemini AI)              │
+│              Google Gemini 2.0 Flash Exp                     │
+│                                                              │
+│   Input:  • Prompt with persona (Ronald AI)                 │
+│           • Retrieved nutritional data                      │
+│           • Conversation history                            │
+│           • Random personality trait                        │
+│                                                              │
+│   Config: • Temperature: 0.85 (creative)                    │
+│           • Top-P: 0.90 (diverse)                           │
+│           • Max Tokens: 300                                 │
+│                                                              │
+│   Output: Natural, conversational Indonesian response       │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 5: POST-PROCESSING (Formatting)                 │
+│                                                              │
+│   • Clean artifacts ("Jawaban:", etc.)                      │
+│   • Add formatted nutrition details (with emojis)           │
+│   • Append health tips (caring tone)                        │
+│   • Fallback if response too short                          │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│                  FINAL JSON RESPONSE                         │
+│                                                              │
+│   {                                                          │
+│     "response": "Big Mac punya 528.8 kkal dengan...",       │
+│     "relevant_items": [...],                                │
+│     "session_id": "session_123..."                          │
+│   }                                                          │
+└─────────────────────────────────────────────────────────────┘
